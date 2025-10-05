@@ -11,7 +11,7 @@ model = joblib.load("random_forest.pkl")
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    data = request.get_json()          # Expect JSON: { "features": [0, 0,0,0,0,0,0,0,0] }
+    data = request.get_json()          # Expect JSON: { "features": [0,0,0,0,0,0,0,0] }
     features = np.array(data["features"]).reshape(1, -1)
     prediction = model.predict(features)
     return jsonify({"prediction": int(prediction[0])})
